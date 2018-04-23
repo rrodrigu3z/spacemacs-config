@@ -377,7 +377,8 @@ you should place your code here."
                (add-hook 'html-mode-hook 'highlight-symbol-nav-mode)
                (add-hook 'css-mode-hook 'highlight-symbol-mode)
                (add-hook 'css-mode-hook 'highlight-symbol-nav-mode))
-  ;; Parens
+  ;; Parens (change for performance reasons)
+  (smartparens-global-mode t)
   (show-smartparens-global-mode -1)
   (show-paren-mode 1)
   (setq show-paren-style 'parenthesis)
