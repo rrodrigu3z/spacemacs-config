@@ -356,6 +356,7 @@ you should place your code here."
   ;; -- GODAMMIT RUBY INDENTATION!!! --
   (setq ruby-align-chained-calls 't
         ruby-align-to-stmt-keywords nil
+        ruby-insert-encoding-magic-comment nil
   ;       ruby-deep-indent-paren nil
   ;       ruby-deep-indent-paren-style nil
         ruby-use-smie t)
