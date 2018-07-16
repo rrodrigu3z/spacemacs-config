@@ -68,6 +68,10 @@ values."
      syntax-checking
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      ;; version-control
+     (version-control :variables
+                      version-control-diff-side 'left
+                      version-control-diff-tool 'diff-hl
+                      version-control-global-margin t)
      osx
      )
    ;; List of additional packages that will be installed without being
@@ -78,8 +82,10 @@ values."
                                       handlebars-sgml-mode
                                       move-dup
                                       whole-line-or-region
-                                      paredit
-                                      paredit-everywhere)
+                                      ;; paredit
+                                      ;; paredit-everywhere
+                                      all-the-icons
+                                      solidity-mode)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -354,12 +360,12 @@ you should place your code here."
   (global-subword-mode 1)
   ;; Ruby
   ;; -- GODAMMIT RUBY INDENTATION!!! --
-  (setq ruby-align-chained-calls 't
-        ruby-align-to-stmt-keywords nil
-        ruby-insert-encoding-magic-comment nil
-  ;       ruby-deep-indent-paren nil
-  ;       ruby-deep-indent-paren-style nil
-        ruby-use-smie t)
+  ;; (setq ruby-align-chained-calls 't
+  ;;       ruby-align-to-stmt-keywords nil
+  ;;       ruby-insert-encoding-magic-comment nil
+  ;; ;       ruby-deep-indent-paren nil
+  ;; ;       ruby-deep-indent-paren-style nil
+  ;;       ruby-use-smie t)
   ;; Fix powerline
   ;;(setq ns-use-srgb-colorspace nil)
   ;;(setq powerline-default-separator 'utf-8)
@@ -381,12 +387,12 @@ you should place your code here."
   ;; Parens (change for performance reasons)
   (smartparens-global-mode t)
   (show-smartparens-global-mode -1)
-  (show-paren-mode 1)
+  ;;(show-paren-mode 1)
   (setq show-paren-style 'parenthesis)
   ;;(electric-pair-mode 1)
-  (electric-indent-mode 1)
-  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-  (add-hook 'css-mode-hook 'rainbow-delimiters-mode)
+  ;;(electric-indent-mode 1)
+  ;;(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+  ;;(add-hook 'css-mode-hook 'rainbow-delimiters-mode)
   ;; paredit
   ;(use-package paredit :ensure t)
   ;(use-package paredit-everywhere :ensure t)
@@ -413,6 +419,8 @@ you should place your code here."
   ;; Handlebars
   (use-package handlebars-sgml-mode :ensure t)
   (handlebars-use-mode 'minor)
+  ;; Neotree icons
+  (setq neo-theme 'icons)
   ;; Custom keybindings
   (global-set-key (kbd "M-o") 'sk/open-line-above)
   (global-set-key (kbd "M-<return>") 'sanityinc/newline-at-end-of-line)
@@ -528,7 +536,7 @@ you should place your code here."
    ["#0a0814" "#f2241f" "#67b11d" "#b1951d" "#4f97d7" "#a31db1" "#28def0" "#b2b2b2"])
  '(package-selected-packages
    (quote
-    (csv-mode paredit-everywhere paredit enh-ruby-mode yaml-mode whole-line-or-region move-dup ibuffer-projectile handlebars-sgml-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data highlight-symbol smeargle orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download mmm-mode markdown-toc markdown-mode magit-gitflow htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit with-editor company-tern dash-functional tern company-statistics company auto-yasnippet auto-dictionary ac-ispell auto-complete spinner adaptive-wrap web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc coffee-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby reveal-in-osx-finder pbcopy osx-trash osx-dictionary launchctl ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
+    (all-the-icons memoize solidity-mode git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter diff-hl csv-mode paredit-everywhere paredit enh-ruby-mode yaml-mode whole-line-or-region move-dup ibuffer-projectile handlebars-sgml-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data highlight-symbol smeargle orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download mmm-mode markdown-toc markdown-mode magit-gitflow htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit with-editor company-tern dash-functional tern company-statistics company auto-yasnippet auto-dictionary ac-ispell auto-complete spinner adaptive-wrap web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc coffee-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby reveal-in-osx-finder pbcopy osx-trash osx-dictionary launchctl ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
